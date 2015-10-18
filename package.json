@@ -1,0 +1,28 @@
+{
+  "name": "react_markdown",
+  "version": "0.0.1",
+  "description": "A react component for markdown edit & real-time preview",
+  "main": "main.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "bulid": "browserify src/main.js -t babelify --outfile public/bundle.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/zxc0328/react_markdown.git"
+  },
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/zxc0328/react_markdown/issues"
+  },
+  "homepage": "https://github.com/zxc0328/react_markdown#readme",
+  "dependencies": {
+    "browserify": "^11.2.0",
+    "react": "^0.14.0",
+    "react-dom": "^0.14.0"
+  },
+  "devDependencies": {
+    "babelify": "^6.3.0"
+  }
+}
