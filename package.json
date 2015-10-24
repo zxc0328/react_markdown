@@ -5,14 +5,14 @@
   "main": "main.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
-    "bulid": "browserify src/main.js -t babelify --outfile public/bundle.js", 
+    "bulid": "browserify src/main.js -t babelify --outfile public/bundle.js",
     "watch": "watchify src/main.js -t babelify --outfile public/bundle.js"
   },
   "repository": {
     "type": "git",
     "url": "git+https://github.com/zxc0328/react_markdown.git"
   },
-  "author": "",
+  "author": "Zhao Xinhui",
   "license": "ISC",
   "bugs": {
     "url": "https://github.com/zxc0328/react_markdown/issues"
@@ -20,6 +20,7 @@
   "homepage": "https://github.com/zxc0328/react_markdown#readme",
   "dependencies": {
     "browserify": "^11.2.0",
+    "marked": "^0.3.5",
     "react": "^0.14.0",
     "react-dom": "^0.14.0",
     "watchify": "^3.4.0"

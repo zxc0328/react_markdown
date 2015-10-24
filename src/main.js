@@ -6,14 +6,21 @@ class Md_textarea extends React.Component {
     constructor() {
         super();
         this._handleChange = this._handleChange.bind(this);
+        this._handleScroll = this._handleScroll.bind(this);
     }
 
     _handleChange(e) {
         this.props.onChanged(e.target.value);
     }
+
+    _handleScroll(e) {
+        this.props.onScrolled(e.target);
+    }
+
     render() {
         return  <div style={this.props.style.warpper}>
-        			<textarea  style={this.props.style.textarea} onChange = {this._handleChange} /> 
+        			<textarea  style={this.props.style.textarea} onChange = {this._handleChange} 
+                    onScroll = {this._handleScroll}/> 
         		</div>
     }
 }
@@ -37,7 +44,10 @@ class React_markdown extends React.Component {
 
     _handleChanged(val) {
         this.setState({value:val});
+    }
 
+    _handleScrolled(t){
+        t.parentNode.nextElementSibling.scrollTop = t.scrollTop;
     }
 
 
@@ -94,7 +104,7 @@ class React_markdown extends React.Component {
     			},
     			textarea : {
     				border:"none",
-				    overflow:"hidden",
+				    overflowY: "scroll",
 				    wordWrap:"break-word",
 				    resize:"none",
 				    width:"100%",
@@ -125,13 +135,14 @@ class React_markdown extends React.Component {
     	}
         return  	<form action="#" style={style.react_markdown}>
         				<div style={style.send_title}>
-        					<input type="text" style={style.title_input} placeholder="文档标题"/>
+        					<input type="text"  style={style.title_input}  placeholder="文档标题"/>
         				</div>
         				<div style={style.main}>
-        					< Md_textarea style={style.md_textarea} onChanged = {this._handleChanged}/> 
-   				    		<div style={style.md_preview} dangerouslySetInnerHTML={this.rawMarkup()} />
+        					< Md_textarea style={style.md_textarea} onChanged = {this._handleChanged}  onScrolled = {this._handleScrolled}/> 
+   				    		<div style={style.md_preview}   dangerouslySetInnerHTML={this.rawMarkup()} />
         				</div>
         			</form>
+                    
         	
     }
 }
