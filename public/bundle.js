@@ -20417,7 +20417,7 @@ var React_markdown = (function (_React$Component2) {
                         wordWrap: "break-word",
                         resize: "none",
                         width: "100%",
-                        padding: "20px 15px 20px 20px",
+                        padding: "20px 15px 20px 15px",
                         height: "100%",
                         outline: "none",
                         boxSizing: "border-box",
@@ -20436,7 +20436,7 @@ var React_markdown = (function (_React$Component2) {
                     backgroundColor: "#f6f6f6",
                     borderLeft: "1px solid #ccc",
                     boxSizing: "border-box",
-                    padding: "20px 15px 20px 20px",
+                    padding: "20px 15px 20px 15px",
                     fontSize: "16px",
                     wordWrap: "break-word"
                 }
@@ -20454,7 +20454,7 @@ var React_markdown = (function (_React$Component2) {
                     'div',
                     { style: style.main },
                     _react2['default'].createElement(Md_textarea, { style: style.md_textarea, onChanged: this._handleChanged, onScrolled: this._handleScrolled }),
-                    _react2['default'].createElement('div', { style: style.md_preview, dangerouslySetInnerHTML: this.rawMarkup() })
+                    _react2['default'].createElement('div', { style: style.md_preview, className: 'preview_style', dangerouslySetInnerHTML: this.rawMarkup() })
                 )
             );
         }

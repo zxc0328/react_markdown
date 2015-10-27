@@ -8,7 +8,6 @@ class Md_textarea extends React.Component {
         this._handleChange = this._handleChange.bind(this);
         this._handleScroll = this._handleScroll.bind(this);
     }
-
     _handleChange(e) {
         this.props.onChanged(e.target.value);
     }
@@ -108,7 +107,7 @@ class React_markdown extends React.Component {
 				    wordWrap:"break-word",
 				    resize:"none",
 				    width:"100%",
-				    padding:"20px 15px 20px 20px",
+				    padding:"20px 15px 20px 15px",
 				    height:"100%",
 				    outline:"none",
 				    boxSizing:"border-box",
@@ -127,7 +126,7 @@ class React_markdown extends React.Component {
 			    backgroundColor: "#f6f6f6",
 			    borderLeft: "1px solid #ccc",
 			    boxSizing: "border-box",
-			    padding: "20px 15px 20px 20px",
+			    padding: "20px 15px 20px 15px",
 			    fontSize: "16px",
 			    wordWrap: "break-word"
     		}
@@ -139,7 +138,7 @@ class React_markdown extends React.Component {
         				</div>
         				<div style={style.main}>
         					< Md_textarea style={style.md_textarea} onChanged = {this._handleChanged}  onScrolled = {this._handleScrolled}/> 
-   				    		<div style={style.md_preview}   dangerouslySetInnerHTML={this.rawMarkup()} />
+   				    		<div style={style.md_preview}  className="preview_style" dangerouslySetInnerHTML={this.rawMarkup()} />
         				</div>
         			</form>
                     
