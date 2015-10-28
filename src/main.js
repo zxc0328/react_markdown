@@ -30,7 +30,7 @@ class Md_toolbar extends React.Component {
         super();
         this.shortCutList = {
             img:"![图片](http://muxistudio.qiniudn.com/img.png)\n",
-            code:"\n<pre>\n</pre>"
+            code:"\n````\n````"
         };
     }
 

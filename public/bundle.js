@@ -20336,7 +20336,7 @@ var Md_toolbar = (function (_React$Component2) {
         _get(Object.getPrototypeOf(Md_toolbar.prototype), 'constructor', this).call(this);
         this.shortCutList = {
             img: "![图片](http://muxistudio.qiniudn.com/img.png)\n",
-            code: "\n<pre>\n</pre>"
+            code: "\n````\n````"
         };
     }
 
