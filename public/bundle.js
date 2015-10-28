@@ -20327,8 +20327,75 @@ var Md_textarea = (function (_React$Component) {
     return Md_textarea;
 })(_react2['default'].Component);
 
-var React_markdown = (function (_React$Component2) {
-    _inherits(React_markdown, _React$Component2);
+var Md_toolbar = (function (_React$Component2) {
+    _inherits(Md_toolbar, _React$Component2);
+
+    function Md_toolbar() {
+        _classCallCheck(this, Md_toolbar);
+
+        _get(Object.getPrototypeOf(Md_toolbar.prototype), 'constructor', this).call(this);
+        this.shortCutList = {
+            img: "![图片](http://muxistudio.qiniudn.com/img.png)\n",
+            code: "\n<pre>\n</pre>"
+        };
+    }
+
+    _createClass(Md_toolbar, [{
+        key: 'render',
+        value: function render() {
+            var fileNameList = ["img.svg", "code.svg", "italic.svg", "link.svg", "list.svg"];
+            return _react2['default'].createElement(
+                'div',
+                { style: this.props.style.warpper },
+                _react2['default'].createElement(Md_toolbar_item, { fileName: fileNameList[0], scList: this.shortCutList, type: 'img', style: this.props.style }),
+                _react2['default'].createElement(Md_toolbar_item, { fileName: fileNameList[1], scList: this.shortCutList, type: 'code', style: this.props.style }),
+                _react2['default'].createElement(Md_toolbar_item, { fileName: fileNameList[2], scList: this.shortCutList, type: 'img', style: this.props.style }),
+                _react2['default'].createElement(Md_toolbar_item, { fileName: fileNameList[3], scList: this.shortCutList, type: 'img', style: this.props.style }),
+                _react2['default'].createElement(Md_toolbar_item, { fileName: fileNameList[4], scList: this.shortCutList, type: 'img', style: this.props.style })
+            );
+        }
+    }]);
+
+    return Md_toolbar;
+})(_react2['default'].Component);
+
+var Md_toolbar_item = (function (_React$Component3) {
+    _inherits(Md_toolbar_item, _React$Component3);
+
+    function Md_toolbar_item() {
+        _classCallCheck(this, Md_toolbar_item);
+
+        _get(Object.getPrototypeOf(Md_toolbar_item.prototype), 'constructor', this).call(this);
+        this.state = { hover: false };
+        this._handleClick = this._handleClick.bind(this);
+        this._toggleHover = this._toggleHover.bind(this);
+    }
+
+    _createClass(Md_toolbar_item, [{
+        key: '_toggleHover',
+        value: function _toggleHover() {
+            this.setState({ hover: !this.state.hover });
+        }
+    }, {
+        key: '_handleClick',
+        value: function _handleClick(e) {
+            var ta = e.target.parentNode.nextSibling.firstChild.firstChild;
+            ta.value = ta.value + this.props.scList[this.props.type];
+        }
+    }, {
+        key: 'render',
+        value: function render() {
+            return _react2['default'].createElement('img', { src: "images/" + this.props.fileName, style: this.state.hover ? this.props.style.item_hover : this.props.style.item,
+                onMouseEnter: this._toggleHover, onMouseLeave: this._toggleHover,
+                onClick: this._handleClick });
+        }
+    }]);
+
+    return Md_toolbar_item;
+})(_react2['default'].Component);
+
+var React_markdown = (function (_React$Component4) {
+    _inherits(React_markdown, _React$Component4);
 
     function React_markdown() {
         _classCallCheck(this, React_markdown);
@@ -20369,15 +20436,70 @@ var React_markdown = (function (_React$Component2) {
                     boxShadow: "0 2px 2px 0 rgba(0,0,0,.14),0 3px 1px -2px rgba(0,0,0,.2),0 1px 5px 0 rgba(0,0,0,.12)",
                     backgroundColor: "#fff",
                     position: "relative",
-                    paddingTop: "72px",
+                    paddingTop: "122px",
                     boxSizing: "border-box"
                 },
                 send_title: {
                     width: "100%",
                     position: "absolute",
                     top: "0",
-                    bottom: "0",
+                    left: "0",
                     height: "72px"
+                },
+                md_toolbar: {
+                    warpper: {
+                        width: "100%",
+                        position: "absolute",
+                        top: "72px",
+                        left: "0",
+                        height: "50px",
+                        borderTop: "1px solid #e3e3e3",
+                        textAlign: "center",
+                        lineHeight: "50px"
+                    },
+                    item: {
+                        display: "inline-block",
+                        height: "20px",
+                        width: "auto",
+                        opacity: "0.6",
+                        verticalAlign: 'middle',
+                        cursor: "pointer",
+                        marginRight: "10px"
+                    },
+                    item_hover: {
+                        display: "inline-block",
+                        height: "20px",
+                        width: "auto",
+                        opacity: "1",
+                        verticalAlign: 'middle',
+                        cursor: "pointer",
+                        marginRight: "10px"
+                    }
+                },
+                send_bottom: {
+                    width: "100%",
+                    position: "absolute",
+                    left: "0",
+                    bottom: "0",
+                    height: "70px",
+                    boxShadow: "0 -1px 2px rgba(0, 0, 0, 0.1)",
+                    zIndex: "100",
+                    borderTop: "1px solid #e3e3e3",
+                    padding: "0 100px",
+                    boxSizing: "border-box",
+                    backgroundColor: "#fff",
+                    lineHeight: '70px'
+                },
+                send_button: {
+                    display: "inline-block",
+                    fontSize: "14px",
+                    cursor: "pointer",
+                    border: "1px solid #cccccc",
+                    borderRadius: "4px",
+                    boxShadow: "1px 1px 1px rgba(0, 0, 0, 0.1)",
+                    padding: "6px 10px",
+                    verticalAlign: 'middle',
+                    backgroundColor: "#fff"
                 },
                 title_input: {
                     display: "block",
@@ -20394,7 +20516,6 @@ var React_markdown = (function (_React$Component2) {
                     overflow: "hidden",
                     resize: "none",
                     outline: "0"
-
                 },
                 main: {
                     width: "100%",
@@ -20407,24 +20528,25 @@ var React_markdown = (function (_React$Component2) {
                         display: "inline-block",
                         width: "50%",
                         height: "100%",
-                        overflowY: "scroll",
+                        overflow: "hidden",
                         borderRight: "1px solid #ccc",
-                        boxSizing: "border-box"
+                        boxSizing: "border-box",
+                        padding: "0px 0px 75px 0px"
                     },
                     textarea: {
                         border: "none",
-                        overflowY: "scroll",
+                        overflow: "auto",
                         wordWrap: "break-word",
                         resize: "none",
                         width: "100%",
-                        padding: "20px 15px 20px 15px",
                         height: "100%",
                         outline: "none",
                         boxSizing: "border-box",
                         fontSize: "16px",
                         WebkitAppearance: "none",
                         WebkitRtlOrdering: "logical",
-                        WebkitUserSelect: "text"
+                        WebkitUserSelect: "text",
+                        padding: "20px 15px 0px 15px"
                     }
                 },
                 md_preview: {
@@ -20432,7 +20554,7 @@ var React_markdown = (function (_React$Component2) {
                     display: "inline-block",
                     width: "50%",
                     height: "100%",
-                    overflowY: "scroll",
+                    overflow: "auto",
                     backgroundColor: "#f6f6f6",
                     borderLeft: "1px solid #ccc",
                     boxSizing: "border-box",
@@ -20450,11 +20572,21 @@ var React_markdown = (function (_React$Component2) {
                     { style: style.send_title },
                     _react2['default'].createElement('input', { type: 'text', style: style.title_input, placeholder: '文档标题' })
                 ),
+                _react2['default'].createElement(Md_toolbar, { style: style.md_toolbar }),
                 _react2['default'].createElement(
                     'div',
                     { style: style.main },
                     _react2['default'].createElement(Md_textarea, { style: style.md_textarea, onChanged: this._handleChanged, onScrolled: this._handleScrolled }),
                     _react2['default'].createElement('div', { style: style.md_preview, className: 'preview_style', dangerouslySetInnerHTML: this.rawMarkup() })
+                ),
+                _react2['default'].createElement(
+                    'div',
+                    { style: style.send_bottom },
+                    _react2['default'].createElement(
+                        'button',
+                        { type: 'submit', style: style.send_button, className: 'send_button' },
+                        '保存'
+                    )
                 )
             );
         }

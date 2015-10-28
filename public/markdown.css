@@ -3,3 +3,10 @@
 	height: auto;
 	margin: 0 auto;
 }
+button.send_button:hover{
+	background-color: #f3f3f3;
+}
+
+img.toolbar_item:hover{
+	opacity: 1;
+}
