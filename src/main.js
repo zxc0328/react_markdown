@@ -18,7 +18,7 @@ class Md_textarea extends React.Component {
 
     render() {
         return  <div style={this.props.style.warpper}>
-        			<textarea  style={this.props.style.textarea} onChange = {this._handleChange} 
+        			<textarea  style={this.props.style.textarea} value={this.props.value} onChange = {this._handleChange} 
                     onScroll = {this._handleScroll}/> 
         		</div>
     }
@@ -29,8 +29,8 @@ class Md_toolbar extends React.Component {
     constructor() {
         super();
         this.shortCutList = {
-            img:"![图片](http://muxistudio.qiniudn.com/img.png)\n",
-            code:"\n````\n````"
+            img:"![图片](http://muxistudio.qiniudn.com/img.png)",
+            code:"````\ncode\n````"
         };
     }
 
@@ -39,11 +39,11 @@ class Md_toolbar extends React.Component {
             "img.svg","code.svg","italic.svg","link.svg","list.svg"
         ]
         return  <div style={this.props.style.warpper}>
-                    <Md_toolbar_item fileName={fileNameList[0]} scList={this.shortCutList} type="img" style={this.props.style} />
-                    <Md_toolbar_item fileName={fileNameList[1]} scList={this.shortCutList} type="code" style={this.props.style} />
-                    <Md_toolbar_item fileName={fileNameList[2]} scList={this.shortCutList} type="img" style={this.props.style} />
-                    <Md_toolbar_item fileName={fileNameList[3]} scList={this.shortCutList} type="img" style={this.props.style} />
-                    <Md_toolbar_item fileName={fileNameList[4]} scList={this.shortCutList} type="img" style={this.props.style} />
+                    <Md_toolbar_item fileName={fileNameList[0]} scList={this.shortCutList} type="img" style={this.props.style} _handleClicked={this.props._handleClicked}/>
+                    <Md_toolbar_item fileName={fileNameList[1]} scList={this.shortCutList} type="code" style={this.props.style} _handleClicked={this.props._handleClicked}/>
+                    <Md_toolbar_item fileName={fileNameList[2]} scList={this.shortCutList} type="img" style={this.props.style} _handleClicked={this.props._handleClicked}/>
+                    <Md_toolbar_item fileName={fileNameList[3]} scList={this.shortCutList} type="img" style={this.props.style} _handleClicked={this.props._handleClicked}/>
+                    <Md_toolbar_item fileName={fileNameList[4]} scList={this.shortCutList} type="img" style={this.props.style} _handleClicked={this.props._handleClicked}/>
                 </div>
     }
 }
@@ -60,9 +60,8 @@ class Md_toolbar_item extends React.Component {
         this.setState({hover:!this.state.hover})
     }
 
-    _handleClick(e){
-        var ta = e.target.parentNode.nextSibling.firstChild.firstChild;
-        ta.value = ta.value + this.props.scList[this.props.type];
+    _handleClick(){
+        this.props._handleClicked(this.props.scList[this.props.type])
     }
 
     render() {
@@ -76,6 +75,7 @@ class React_markdown extends React.Component {
     constructor() {
         super();
         this._handleChanged = this._handleChanged.bind(this);
+        this._handleClicked = this._handleClicked.bind(this);
         this.state = {value:""};
     }
 
@@ -96,7 +96,10 @@ class React_markdown extends React.Component {
         t.parentNode.nextElementSibling.scrollTop = t.scrollTop;
     }
 
-    
+    _handleClicked(val){
+        var new_val = this.state.value + val
+        this.setState({value:new_val});
+    }
 
     render() {
     	var style = {
@@ -239,9 +242,9 @@ class React_markdown extends React.Component {
         				<div style={style.send_title}>
         					<input type="text"  style={style.title_input}  placeholder="文档标题"/>
         				</div>
-                        <Md_toolbar style={style.md_toolbar}/>
+                        <Md_toolbar style={style.md_toolbar} _handleClicked={this._handleClicked}/>
         				<div style={style.main}>
-        					< Md_textarea style={style.md_textarea} onChanged = {this._handleChanged}  onScrolled = {this._handleScrolled}/> 
+        					< Md_textarea style={style.md_textarea} value={this.state.value} onChanged = {this._handleChanged}  onScrolled = {this._handleScrolled}/> 
    				    		<div style={style.md_preview}  className="preview_style" dangerouslySetInnerHTML={this.rawMarkup()} />
         				</div>
                         <div style={style.send_bottom}>

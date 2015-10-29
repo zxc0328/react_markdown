@@ -20318,7 +20318,7 @@ var Md_textarea = (function (_React$Component) {
             return _react2['default'].createElement(
                 'div',
                 { style: this.props.style.warpper },
-                _react2['default'].createElement('textarea', { style: this.props.style.textarea, onChange: this._handleChange,
+                _react2['default'].createElement('textarea', { style: this.props.style.textarea, value: this.props.value, onChange: this._handleChange,
                     onScroll: this._handleScroll })
             );
         }
@@ -20335,8 +20335,8 @@ var Md_toolbar = (function (_React$Component2) {
 
         _get(Object.getPrototypeOf(Md_toolbar.prototype), 'constructor', this).call(this);
         this.shortCutList = {
-            img: "![图片](http://muxistudio.qiniudn.com/img.png)\n",
-            code: "\n````\n````"
+            img: "![图片](http://muxistudio.qiniudn.com/img.png)",
+            code: "````\ncode\n````"
         };
     }
 
@@ -20347,11 +20347,11 @@ var Md_toolbar = (function (_React$Component2) {
             return _react2['default'].createElement(
                 'div',
                 { style: this.props.style.warpper },
-                _react2['default'].createElement(Md_toolbar_item, { fileName: fileNameList[0], scList: this.shortCutList, type: 'img', style: this.props.style }),
-                _react2['default'].createElement(Md_toolbar_item, { fileName: fileNameList[1], scList: this.shortCutList, type: 'code', style: this.props.style }),
-                _react2['default'].createElement(Md_toolbar_item, { fileName: fileNameList[2], scList: this.shortCutList, type: 'img', style: this.props.style }),
-                _react2['default'].createElement(Md_toolbar_item, { fileName: fileNameList[3], scList: this.shortCutList, type: 'img', style: this.props.style }),
-                _react2['default'].createElement(Md_toolbar_item, { fileName: fileNameList[4], scList: this.shortCutList, type: 'img', style: this.props.style })
+                _react2['default'].createElement(Md_toolbar_item, { fileName: fileNameList[0], scList: this.shortCutList, type: 'img', style: this.props.style, _handleClicked: this.props._handleClicked }),
+                _react2['default'].createElement(Md_toolbar_item, { fileName: fileNameList[1], scList: this.shortCutList, type: 'code', style: this.props.style, _handleClicked: this.props._handleClicked }),
+                _react2['default'].createElement(Md_toolbar_item, { fileName: fileNameList[2], scList: this.shortCutList, type: 'img', style: this.props.style, _handleClicked: this.props._handleClicked }),
+                _react2['default'].createElement(Md_toolbar_item, { fileName: fileNameList[3], scList: this.shortCutList, type: 'img', style: this.props.style, _handleClicked: this.props._handleClicked }),
+                _react2['default'].createElement(Md_toolbar_item, { fileName: fileNameList[4], scList: this.shortCutList, type: 'img', style: this.props.style, _handleClicked: this.props._handleClicked })
             );
         }
     }]);
@@ -20378,9 +20378,8 @@ var Md_toolbar_item = (function (_React$Component3) {
         }
     }, {
         key: '_handleClick',
-        value: function _handleClick(e) {
-            var ta = e.target.parentNode.nextSibling.firstChild.firstChild;
-            ta.value = ta.value + this.props.scList[this.props.type];
+        value: function _handleClick() {
+            this.props._handleClicked(this.props.scList[this.props.type]);
         }
     }, {
         key: 'render',
@@ -20402,6 +20401,7 @@ var React_markdown = (function (_React$Component4) {
 
         _get(Object.getPrototypeOf(React_markdown.prototype), 'constructor', this).call(this);
         this._handleChanged = this._handleChanged.bind(this);
+        this._handleClicked = this._handleClicked.bind(this);
         this.state = { value: "" };
     }
 
@@ -20424,6 +20424,12 @@ var React_markdown = (function (_React$Component4) {
         key: '_handleScrolled',
         value: function _handleScrolled(t) {
             t.parentNode.nextElementSibling.scrollTop = t.scrollTop;
+        }
+    }, {
+        key: '_handleClicked',
+        value: function _handleClicked(val) {
+            var new_val = this.state.value + val;
+            this.setState({ value: new_val });
         }
     }, {
         key: 'render',
@@ -20572,11 +20578,11 @@ var React_markdown = (function (_React$Component4) {
                     { style: style.send_title },
                     _react2['default'].createElement('input', { type: 'text', style: style.title_input, placeholder: '文档标题' })
                 ),
-                _react2['default'].createElement(Md_toolbar, { style: style.md_toolbar }),
+                _react2['default'].createElement(Md_toolbar, { style: style.md_toolbar, _handleClicked: this._handleClicked }),
                 _react2['default'].createElement(
                     'div',
                     { style: style.main },
-                    _react2['default'].createElement(Md_textarea, { style: style.md_textarea, onChanged: this._handleChanged, onScrolled: this._handleScrolled }),
+                    _react2['default'].createElement(Md_textarea, { style: style.md_textarea, value: this.state.value, onChanged: this._handleChanged, onScrolled: this._handleScrolled }),
                     _react2['default'].createElement('div', { style: style.md_preview, className: 'preview_style', dangerouslySetInnerHTML: this.rawMarkup() })
                 ),
                 _react2['default'].createElement(

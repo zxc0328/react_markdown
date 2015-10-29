@@ -2,6 +2,10 @@
 	max-width: 100%;
 	height: auto;
 	margin: 0 auto;
+	display: block;
+}
+code{
+	background-color: #fff;
 }
 button.send_button:hover{
 	background-color: #f3f3f3;
