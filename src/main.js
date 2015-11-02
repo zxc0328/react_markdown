@@ -33,13 +33,15 @@ class Md_toolbar extends React.Component {
             code:"````\ncode\n````",
             italic:"*斜体*",
             link:"[链接内容](http://muxistudio.com)",
-            list:"- 无序列表"  
+            list:"- 无序列表",
+            ol:"1. 有序列表",  
+            quote:"> 引用"  
         };
     }
 
-    render() {
+    render() { 
         var fileNameList = [
-            "img.svg","code.svg","italic.svg","link.svg","list.svg"
+            "img.svg","code.svg","italic.svg","link.svg","list.svg","ol.svg","quote.svg"
         ]
         return  <div style={this.props.style.warpper}>
                     <Md_toolbar_item fileName={fileNameList[0]} scList={this.shortCutList} type="img" style={this.props.style} _handleClicked={this.props._handleClicked}/>
@@ -47,6 +49,8 @@ class Md_toolbar extends React.Component {
                     <Md_toolbar_item fileName={fileNameList[2]} scList={this.shortCutList} type="italic" style={this.props.style} _handleClicked={this.props._handleClicked}/>
                     <Md_toolbar_item fileName={fileNameList[3]} scList={this.shortCutList} type="link" style={this.props.style} _handleClicked={this.props._handleClicked}/>
                     <Md_toolbar_item fileName={fileNameList[4]} scList={this.shortCutList} type="list" style={this.props.style} _handleClicked={this.props._handleClicked}/>
+                    <Md_toolbar_item fileName={fileNameList[5]} scList={this.shortCutList} type="ol" style={this.props.style} _handleClicked={this.props._handleClicked}/>
+                    <Md_toolbar_item fileName={fileNameList[6]} scList={this.shortCutList} type="quote" style={this.props.style} _handleClicked={this.props._handleClicked}/>
                 </div>
     }
 }

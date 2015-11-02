@@ -20339,14 +20339,16 @@ var Md_toolbar = (function (_React$Component2) {
             code: "````\ncode\n````",
             italic: "*斜体*",
             link: "[链接内容](http://muxistudio.com)",
-            list: "- 无序列表"
+            list: "- 无序列表",
+            ol: "1. 有序列表",
+            quote: "> 引用"
         };
     }
 
     _createClass(Md_toolbar, [{
         key: 'render',
         value: function render() {
-            var fileNameList = ["img.svg", "code.svg", "italic.svg", "link.svg", "list.svg"];
+            var fileNameList = ["img.svg", "code.svg", "italic.svg", "link.svg", "list.svg", "ol.svg", "quote.svg"];
             return _react2['default'].createElement(
                 'div',
                 { style: this.props.style.warpper },
@@ -20354,7 +20356,9 @@ var Md_toolbar = (function (_React$Component2) {
                 _react2['default'].createElement(Md_toolbar_item, { fileName: fileNameList[1], scList: this.shortCutList, type: 'code', style: this.props.style, _handleClicked: this.props._handleClicked }),
                 _react2['default'].createElement(Md_toolbar_item, { fileName: fileNameList[2], scList: this.shortCutList, type: 'italic', style: this.props.style, _handleClicked: this.props._handleClicked }),
                 _react2['default'].createElement(Md_toolbar_item, { fileName: fileNameList[3], scList: this.shortCutList, type: 'link', style: this.props.style, _handleClicked: this.props._handleClicked }),
-                _react2['default'].createElement(Md_toolbar_item, { fileName: fileNameList[4], scList: this.shortCutList, type: 'list', style: this.props.style, _handleClicked: this.props._handleClicked })
+                _react2['default'].createElement(Md_toolbar_item, { fileName: fileNameList[4], scList: this.shortCutList, type: 'list', style: this.props.style, _handleClicked: this.props._handleClicked }),
+                _react2['default'].createElement(Md_toolbar_item, { fileName: fileNameList[5], scList: this.shortCutList, type: 'ol', style: this.props.style, _handleClicked: this.props._handleClicked }),
+                _react2['default'].createElement(Md_toolbar_item, { fileName: fileNameList[6], scList: this.shortCutList, type: 'quote', style: this.props.style, _handleClicked: this.props._handleClicked })
             );
         }
     }]);
