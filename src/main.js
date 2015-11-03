@@ -83,6 +83,7 @@ class React_markdown extends React.Component {
         super();
         this._handleChanged = this._handleChanged.bind(this);
         this._handleClicked = this._handleClicked.bind(this);
+        this._handleScrolled = this._handleScrolled.bind(this);
         this.state = {value:""};
     }
 
@@ -100,7 +101,7 @@ class React_markdown extends React.Component {
     }
 
     _handleScrolled(t){
-        t.parentNode.nextElementSibling.scrollTop = t.scrollTop;
+        this.refs.preview.scrollTop = t.scrollTop;
     }
 
     _handleClicked(val){
@@ -247,12 +248,12 @@ class React_markdown extends React.Component {
     	}
         return  	<form action="#" style={style.react_markdown}>
         				<div style={style.send_title}>
-        					<input type="text"  style={style.title_input}  placeholder="文档标题"/>
+        					<input type="text" style={style.title_input}  placeholder="文档标题"/>
         				</div>
                         <Md_toolbar style={style.md_toolbar} _handleClicked={this._handleClicked}/>
         				<div style={style.main}>
         					< Md_textarea style={style.md_textarea} value={this.state.value} onChanged = {this._handleChanged}  onScrolled = {this._handleScrolled}/> 
-   				    		<div style={style.md_preview}  className="preview_style" dangerouslySetInnerHTML={this.rawMarkup()} />
+   				    		<div style={style.md_preview}  className="preview_style" dangerouslySetInnerHTML={this.rawMarkup()} ref="preview" />
         				</div>
                         <div style={style.send_bottom}>
                             <button type="submit" style={style.send_button} className="send_button">保存</button>

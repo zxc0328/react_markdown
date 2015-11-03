@@ -20409,6 +20409,7 @@ var React_markdown = (function (_React$Component4) {
         _get(Object.getPrototypeOf(React_markdown.prototype), 'constructor', this).call(this);
         this._handleChanged = this._handleChanged.bind(this);
         this._handleClicked = this._handleClicked.bind(this);
+        this._handleScrolled = this._handleScrolled.bind(this);
         this.state = { value: "" };
     }
 
@@ -20430,7 +20431,7 @@ var React_markdown = (function (_React$Component4) {
     }, {
         key: '_handleScrolled',
         value: function _handleScrolled(t) {
-            t.parentNode.nextElementSibling.scrollTop = t.scrollTop;
+            this.refs.preview.scrollTop = t.scrollTop;
         }
     }, {
         key: '_handleClicked',
@@ -20590,7 +20591,7 @@ var React_markdown = (function (_React$Component4) {
                     'div',
                     { style: style.main },
                     _react2['default'].createElement(Md_textarea, { style: style.md_textarea, value: this.state.value, onChanged: this._handleChanged, onScrolled: this._handleScrolled }),
-                    _react2['default'].createElement('div', { style: style.md_preview, className: 'preview_style', dangerouslySetInnerHTML: this.rawMarkup() })
+                    _react2['default'].createElement('div', { style: style.md_preview, className: 'preview_style', dangerouslySetInnerHTML: this.rawMarkup(), ref: 'preview' })
                 ),
                 _react2['default'].createElement(
                     'div',
